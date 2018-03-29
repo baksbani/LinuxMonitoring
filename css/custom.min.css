@@ -1,0 +1,8 @@
+.has-error {
+  color: #e73d4a;
+  background-color: #fbe1e3;
+  border-color: #fbe1e3;
+  margin-top: 5px;
+  height: 30px;
+  padding: 5px;
+}
