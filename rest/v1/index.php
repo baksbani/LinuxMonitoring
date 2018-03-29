@@ -16,13 +16,13 @@ Flight::route('/', function(){
 
 // Function return all servers from list serverbynum
 Flight::route('GET /server/@id', function($id){
-  $data = Flight::pm()->query("SELECT * FROM servers",[]);
+  $data = Flight::pm()->query("SELECT * FROM servers WHERE user_id = :id ",[':id' => $id]);
   Flight::json($data);
 });
 
 // Function return number of active servers by that user
 Flight::route('GET /serverbynum/@id', function($id){
-  $data = Flight::pm()->query("SELECT * FROM servers",[]);
+  $data = Flight::pm()->query("SELECT * FROM servers WHERE user_id = :id ",[':id' => $id]);
   $row_cnt = count($data);
   Flight::json($row_cnt);
 });

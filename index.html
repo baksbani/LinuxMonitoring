@@ -270,7 +270,8 @@ License: You must have a valid license purchased only from themeforest(the above
   }
 
   function get_user_servers_list(){
-    $.get("rest/v1/server/255").done(function(data) {
+    var userID = Utils.get_from_localstorage('user').id;
+    $.get("rest/v1/server/"+userID).done(function(data) {
       console.log(data);
       $.each(data, function(index, item){
         $('#all_servers').append('<tr><th scope="row">'+item.server_id+'</th>'+'<td>'+item.server_name+'</td>'+'<td>'+item.server_os+'</td>'+'<td>'+item.server_ip+'</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>');
@@ -281,7 +282,8 @@ License: You must have a valid license purchased only from themeforest(the above
   }
 
   function get_user_servers_by_number(){
-    $.get("rest/v1/serverbynum/255").done(function(data) {
+    var userID = Utils.get_from_localstorage('user').id;
+    $.get("rest/v1/serverbynum/"+userID).done(function(data) {
       console.log(data);
         $('#serversnumber').append(data);
     }).fail(function(error) {
