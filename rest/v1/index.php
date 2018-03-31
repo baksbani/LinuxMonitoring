@@ -14,7 +14,7 @@ Flight::route('/', function(){
   echo 'Hello';
 });
 
-// Function return all servers from list serverbynum
+// Function return all servers that belong to specific user
 Flight::route('GET /server/@id', function($id){
   $data = Flight::pm()->query("SELECT s.server_id, s.server_name, m.os_name, m.os_version, m.external_ip FROM servers s INNER JOIN Monitoring m ON m.user_id = s.user_id AND s.auth_code = m.auth_code INNER JOIN ( SELECT max(id) max_id, user_id, os_name, os_version FROM Monitoring GROUP BY user_id, os_name, os_version ) t ON t.max_id = m.id WHERE s.user_id = :id ",[':id' => $id]);
   Flight::json($data);
