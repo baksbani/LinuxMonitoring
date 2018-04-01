@@ -14,315 +14,289 @@ License: You must have a valid license purchased only from themeforest(the above
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-    <!-- BEGIN HEAD -->
+<!--<![endif]-->
+<!-- BEGIN HEAD -->
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Server Monitoring</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta content="" name="description" />
-        <meta content="" name="author" />
-        <!-- BEGIN GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-        <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<head>
+  <meta charset="utf-8" />
+  <title>Server Monitoring</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <meta content="" name="description" />
+  <meta content="" name="author" />
+  <!-- BEGIN GLOBAL MANDATORY STYLES -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+  <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 
-        <link href="css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
-        <link href="css/plugins.min.css" rel="stylesheet" type="text/css" />
-        <!-- END THEME GLOBAL STYLES -->
-        <!-- BEGIN PAGE LEVEL STYLES -->
-        <link href="css/profile.min.css" rel="stylesheet" type="text/css" />
-        <!-- END PAGE LEVEL STYLES -->
-        <!-- BEGIN THEME LAYOUT STYLES -->
-        <link href="css/layout.min.css" rel="stylesheet" type="text/css" />
-        <link href="css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
-        <link href="css/custom.min.css" rel="stylesheet" type="text/css" />
-        <link href="bower_components/bootstrap-sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css"/>
-        <!-- END THEME LAYOUT STYLES -->
-        <link rel="shortcut icon" href="favicon.ico" /> </head>
-    <!-- END HEAD -->
+  <link href="css/components-rounded.min.css" rel="stylesheet" id="style_components" type="text/css" />
+  <link href="css/plugins.min.css" rel="stylesheet" type="text/css" />
+  <!-- END THEME GLOBAL STYLES -->
+  <!-- BEGIN PAGE LEVEL STYLES -->
+  <link href="css/profile.min.css" rel="stylesheet" type="text/css" />
+  <!-- END PAGE LEVEL STYLES -->
+  <!-- BEGIN THEME LAYOUT STYLES -->
+  <link href="css/layout.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
+  <link href="css/custom.min.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/bootstrap-sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css" />
+  <!-- END THEME LAYOUT STYLES -->
+  <link rel="shortcut icon" href="favicon.ico" /> </head>
+<!-- END HEAD -->
 
-    <body class="page-header-fixed page-container-bg-solid page-content-white" style="background-color: #eef1f5; display: none;">
-        <!-- BEGIN HEADER -->
-        <div class="page-header navbar navbar-fixed-top">
-            <!-- BEGIN HEADER INNER -->
-            <div class="page-header-inner ">
-                <!-- BEGIN LOGO -->
-                <div class="page-logo">
-                    <a href="index.html"><img src="img/logo.png" alt="logo" class="logo-default" /> </a>
-                </div>
-                <!-- END LOGO -->
-                <!-- BEGIN RESPONSIVE MENU TOGGLER -->
-                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
-                <!-- END RESPONSIVE MENU TOGGLER -->
-                <!-- BEGIN TOP NAVIGATION MENU -->
-                <div class="top-menu">
-                    <ul class="nav navbar-nav pull-right">
-                        <li class="dropdown dropdown-user">
-                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+<body class="page-header-fixed page-container-bg-solid page-content-white" style="background-color: #eef1f5; display: none;">
+  <!-- BEGIN HEADER -->
+  <div class="page-header navbar navbar-fixed-top">
+    <!-- BEGIN HEADER INNER -->
+    <div class="page-header-inner ">
+      <!-- BEGIN LOGO -->
+      <div class="page-logo">
+        <a href="index.html"><img src="img/logo.png" alt="logo" class="logo-default" /> </a>
+      </div>
+      <!-- END LOGO -->
+      <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+      <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse"> </a>
+      <!-- END RESPONSIVE MENU TOGGLER -->
+      <!-- BEGIN TOP NAVIGATION MENU -->
+      <div class="top-menu">
+        <ul class="nav navbar-nav pull-right">
+          <li class="dropdown dropdown-user">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                 <img class="profile-image img-circle" />
                                 <span class="profile-name username username-hide-on-mobile">Venan Osmic </span>
                                 <i class="fa fa-angle-down"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-menu-default">
-                                <li>
-                                    <a target="_blank" href="https://myaccount.google.com/">
+            <ul class="dropdown-menu dropdown-menu-default">
+              <li>
+                <a target="_blank" href="https://myaccount.google.com/">
                                         <i class="icon-user"></i> My Profile </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" onclick="create_new_server();">
+              </li>
+              <li>
+                <a href="javascript:void(0);" onclick="create_new_server();">
                                         <i class="icon-settings"></i> Add New Machine </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;Login.logout()">
+              </li>
+              <li>
+                <a href="javascript:;Login.logout()">
                                         <i class="icon-key"></i> Log Out </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- END USER LOGIN DROPDOWN -->
-                        <!-- BEGIN QUICK SIDEBAR TOGGLER -->
-                        <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                        <li class="dropdown dropdown-quick-sidebar-toggler">
-                            <a href="javascript:;Login.logout()" class="dropdown-toggle">
+              </li>
+            </ul>
+          </li>
+          <!-- END USER LOGIN DROPDOWN -->
+          <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+          <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+          <li class="dropdown dropdown-quick-sidebar-toggler">
+            <a href="javascript:;Login.logout()" class="dropdown-toggle">
                                 <i class="icon-logout"></i>
                             </a>
-                        </li>
-                        <!-- END QUICK SIDEBAR TOGGLER -->
-                    </ul>
+          </li>
+          <!-- END QUICK SIDEBAR TOGGLER -->
+        </ul>
+      </div>
+      <!-- END TOP NAVIGATION MENU -->
+    </div>
+    <!-- END HEADER INNER -->
+  </div>
+  <!-- END HEADER -->
+  <!-- BEGIN HEADER & CONTENT DIVIDER -->
+  <div class="clearfix"> </div>
+  <!-- END HEADER & CONTENT DIVIDER -->
+  <!-- BEGIN CONTAINER -->
+  <div class="page-container">
+
+    <!-- BEGIN CONTENT -->
+    <div class="page-content-wrapper">
+      <!-- BEGIN CONTENT BODY -->
+      <div class="page-content" style="margin-left: 0px;">
+        <!-- BEGIN PAGE HEADER-->
+        <!-- END PAGE HEADER-->
+        <div class="row">
+          <div class="col-md-12">
+            <!-- BEGIN PROFILE SIDEBAR -->
+            <div class="profile-sidebar">
+              <!-- PORTLET MAIN -->
+              <div class="portlet light profile-sidebar-portlet ">
+                <!-- SIDEBAR USERPIC -->
+                <div class="profile-userpic">
+                  <img class="profile-image img-responsive" alt=""> </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                  <div class="profile-name profile-usertitle-name"> Venan Osmic </div>
+                  <div id="profile-email" class="profile-usertitle-name"> venanosmic24@gmail.com </div>
                 </div>
-                <!-- END TOP NAVIGATION MENU -->
-            </div>
-            <!-- END HEADER INNER -->
-        </div>
-        <!-- END HEADER -->
-        <!-- BEGIN HEADER & CONTENT DIVIDER -->
-        <div class="clearfix"> </div>
-        <!-- END HEADER & CONTENT DIVIDER -->
-        <!-- BEGIN CONTAINER -->
-        <div class="page-container">
+                <!-- END SIDEBAR USER TITLE -->
 
-            <!-- BEGIN CONTENT -->
-            <div class="page-content-wrapper">
-                <!-- BEGIN CONTENT BODY -->
-                <div class="page-content" style="margin-left: 0px;">
-                    <!-- BEGIN PAGE HEADER-->
-                    <!-- END PAGE HEADER-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- BEGIN PROFILE SIDEBAR -->
-                            <div class="profile-sidebar">
-                                <!-- PORTLET MAIN -->
-                                <div class="portlet light profile-sidebar-portlet ">
-                                    <!-- SIDEBAR USERPIC -->
-                                    <div class="profile-userpic">
-                                        <img class="profile-image img-responsive" alt=""> </div>
-                                    <!-- END SIDEBAR USERPIC -->
-                                    <!-- SIDEBAR USER TITLE -->
-                                    <div class="profile-usertitle">
-                                        <div class="profile-name profile-usertitle-name"> Venan Osmic </div>
-                                        <div id="profile-email" class="profile-usertitle-name"> venanosmic24@gmail.com </div>
-                                    </div>
-                                    <!-- END SIDEBAR USER TITLE -->
-
-                                    <!-- SIDEBAR MENU -->
-                                    <div class="profile-usermenu">
-                                        <ul class="nav">
-                                            <li class="active" style="text-align: center;">
-                                                <a href="mailto: it-center@ibu.edu.ba" style="font-size: 14px;">
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                  <ul class="nav">
+                    <li class="active" style="text-align: center;">
+                      <a href="mailto: it-center@ibu.edu.ba" style="font-size: 14px;">
                                                     <i class="icon-info"></i> For any questions please contact <br>venanosmic24@gmail.com </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- END MENU -->
-                                </div>
-                                <!-- END PORTLET MAIN -->
-
-                            </div>
-                            <!-- END BEGIN PROFILE SIDEBAR -->
-                            <!-- BEGIN PROFILE CONTENT -->
-                            <div class="profile-content">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="portlet light ">
-                                            <div class="portlet-title tabbable-line">
-                                                <div class="caption caption-md">
-                                                    <i class="icon-globe theme-font hide"></i>
-                                                    <span class="caption-subject font-blue-madison bold uppercase">Servers assigned to: <span style="color:#BD0C0C; font-size: 20px; " class="profile-name" > First name Last name </span></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="row list-separated profile-stat">
-                                              <div class="col-md-12 ">
-                                                  <div class="uppercase profile-stat-title" id="serversnumber"></div>
-                                                  <div class="uppercase profile-stat-text">Servers</div>
-                                              </div>
-                                              <!--
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 37 </div>
-                                                  <div class="uppercase profile-stat-text"> PC </div>
-                                              </div>
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 37 </div>
-                                                  <div class="uppercase profile-stat-text"> Laptop </div>
-                                              </div>
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 37 </div>
-                                                  <div class="uppercase profile-stat-text"> Printer </div>
-                                              </div>
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 37 </div>
-                                                  <div class="uppercase profile-stat-text"> Phone </div>
-                                              </div>
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 37 </div>
-                                                  <div class="uppercase profile-stat-text"> Mouse </div>
-                                              </div>
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 51 </div>
-                                                  <div class="uppercase profile-stat-text"> Keyboard </div>
-                                              </div>
-                                              <div class="col-md-1 ">
-                                                  <div class="uppercase profile-stat-title"> 61 </div>
-                                                  <div class="uppercase profile-stat-text"> Projector </div>
-                                              </div> -->
-                                          </div>
-
-                                            <div class="portlet-body">
-                                                <div class="tab-content">
-                                                    <div id="accordion1" class="panel-group">
-                                                            <div class="panel panel-primary">
-                                                                <div class="panel-heading">All active servers</div>
-                                                                <div class="panel-body">
-                                                                    <table class="table" id="all_servers">
-                                                                        <thead>
-                                                                            <tr>
-                                                                                <th scope="col">#</th>
-                                                                                <th scope="col">Server Name</th>
-                                                                                <th scope="col">OS</th>
-                                                                                <th scope="col">OS Version</th>
-                                                                                <th scope="col">IP</th>
-                                                                                <th scope="col">Action</th>
-                                                                            </tr>
-                                                                        </thead>
-                                                                    </table>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END PROFILE CONTENT -->
-                        </div>
-                    </div>
+                    </li>
+                  </ul>
                 </div>
-                <!-- END CONTENT BODY -->
+                <!-- END MENU -->
+              </div>
+              <!-- END PORTLET MAIN -->
+
             </div>
-            <!-- END CONTENT -->
+            <!-- END BEGIN PROFILE SIDEBAR -->
+            <!-- BEGIN PROFILE CONTENT -->
+            <div class="profile-content">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="portlet light ">
+                    <div class="portlet-title tabbable-line">
+                      <div class="caption caption-md">
+                        <i class="icon-globe theme-font hide"></i>
+                        <span class="caption-subject font-blue-madison bold uppercase">Servers assigned to: <span style="color:#BD0C0C; font-size: 20px; " class="profile-name" > First name Last name </span></span>
+                      </div>
+                    </div>
+
+                    <div class="row list-separated profile-stat">
+                      <div class="col-md-12 ">
+                        <div class="uppercase profile-stat-title" id="serversnumber"></div>
+                        <div class="uppercase profile-stat-text">Servers</div>
+                      </div>
+                    </div>
+
+                    <div class="portlet-body">
+                      <div class="tab-content">
+                        <div id="accordion1" class="panel-group">
+                          <div class="panel panel-primary">
+                            <div class="panel-heading">All active servers</div>
+                            <div class="panel-body">
+                              <table class="table" id="all_servers">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Server Name</th>
+                                    <th scope="col">OS</th>
+                                    <th scope="col">OS Version</th>
+                                    <th scope="col">IP</th>
+                                    <th scope="col">Action</th>
+                                  </tr>
+                                </thead>
+                              </table>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- END PROFILE CONTENT -->
+          </div>
         </div>
-        <!-- END CONTAINER -->
-        <!--[if lt IE 9]>
+      </div>
+      <!-- END CONTENT BODY -->
+    </div>
+    <!-- END CONTENT -->
+  </div>
+  <!-- END CONTAINER -->
+  <!--[if lt IE 9]>
 <script src="../assets/global/plugins/respond.min.js"></script>
 <script src="../assets/global/plugins/excanvas.min.js"></script>
 <![endif]-->
-        <!-- BEGIN CORE PLUGINS -->
-        <script src="js/jquery.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
-        <!-- END CORE PLUGINS -->
-        <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
-        <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL PLUGINS -->
-        <!-- BEGIN THEME GLOBAL SCRIPTS -->
-        <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
-        <!-- END THEME GLOBAL SCRIPTS -->
-        <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script src="../assets/pages/scripts/profile.min.js" type="text/javascript"></script>
-        <!-- END PAGE LEVEL SCRIPTS -->
-        <!-- BEGIN THEME LAYOUT SCRIPTS -->
-        <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
-        <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
-        <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
-        <!-- END THEME LAYOUT SCRIPTS -->
+  <!-- BEGIN CORE PLUGINS -->
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/uniform/jquery.uniform.min.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+  <!-- END CORE PLUGINS -->
+  <!-- BEGIN PAGE LEVEL PLUGINS -->
+  <script src="../assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+  <script src="../assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+  <!-- END PAGE LEVEL PLUGINS -->
+  <!-- BEGIN THEME GLOBAL SCRIPTS -->
+  <script src="../assets/global/scripts/app.min.js" type="text/javascript"></script>
+  <!-- END THEME GLOBAL SCRIPTS -->
+  <!-- BEGIN PAGE LEVEL SCRIPTS -->
+  <script src="../assets/pages/scripts/profile.min.js" type="text/javascript"></script>
+  <!-- END PAGE LEVEL SCRIPTS -->
+  <!-- BEGIN THEME LAYOUT SCRIPTS -->
+  <script src="../assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+  <script src="../assets/layouts/layout/scripts/demo.min.js" type="text/javascript"></script>
+  <script src="../assets/layouts/global/scripts/quick-sidebar.min.js" type="text/javascript"></script>
+  <!-- END THEME LAYOUT SCRIPTS -->
 
-        <script src="js/utils.js" type="text/javascript"></script>
-        <script src="js/login.js" type="text/javascript"></script>
-        <script src="bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
-    </body>
+  <script src="js/utils.js" type="text/javascript"></script>
+  <script src="js/login.js" type="text/javascript"></script>
+  <script src="bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
+</body>
 
 <script type="text/javascript">
-  if (!Utils.get_from_localstorage('user')){
-    window.location="/login.html";
-  }else{
+  if (!Utils.get_from_localstorage('user')) {
+    window.location = "/login.html";
+  } else {
     $('.profile-image').attr('src', Utils.get_from_localstorage('user').image);
     $('.profile-name').html(Utils.get_from_localstorage('user').name);
     $('#profile-email').html(Utils.get_from_localstorage('user').email);
     $('body').show();
   }
 
-  function get_user_servers_list(){
+  function get_user_servers_list() {
     var userID = Utils.get_from_localstorage('user').id;
-    $.get("rest/v1/server/"+userID).done(function(data) {
+    $.get("rest/v1/server/" + userID).done(function(data) {
       console.log(data);
-      $.each(data, function(index, item){
-        $('#all_servers').append('<tr><th scope="row">'+item.server_id+'</th>'+'<td id="buttoncic">'+item.server_name+'</td>'+'<td>'+item.os_name+'</td>'+'<td>'+item.os_version+'</td>'+'<td>'+item.external_ip+'</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>');
+      $.each(data, function(index, item) {
+        $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="buttoncic">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
+          '</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
+        );
       })
     }).fail(function(error) {
       console.log(error.responseJSON.error);
     });
   }
 
-  function get_user_servers_by_number(){
+  function get_user_servers_by_number() {
     var userID = Utils.get_from_localstorage('user').id;
-    $.get("rest/v1/serverbynum/"+userID).done(function(data) {
+    $.get("rest/v1/serverbynum/" + userID).done(function(data) {
       console.log(data);
-        $('#serversnumber').append(data);
+      $('#serversnumber').append(data);
     }).fail(function(error) {
       console.log(error.responseJSON.error);
     });
   }
 
-  function create_new_server(){
-  swal({
-  title: "Add New Machine:",
-  text: "Enter new server's name:",
-  type: "input",
-  showCancelButton: true,
-  closeOnConfirm: false,
-  inputPlaceholder: "Write name"
-  }, function (inputValue) {
-  if (inputValue === false) return false;
-  if (inputValue === "") {
-    swal.showInputError("You need to write something!");
-    return false
-  }
-  var userID = Utils.get_from_localstorage('user').id;
-  $.get("rest/v1/crateserver/"+inputValue+"/"+userID).done(function(data) {
-    console.log(data);
-    if(data != "greskica"){
-      swal("Auth: " + data, "Remeber to save your auth code!!!", "success");
-    }else {
-      swal("Error!", "Error in: " + data, "error");
-    }
-    }).fail(function(error) {
-      console.log(error);
+  function create_new_server() {
+    swal({
+      title: "Add New Machine:",
+      text: "Enter new server's name:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      inputPlaceholder: "Write name"
+    }, function(inputValue) {
+      if (inputValue === false) return false;
+      if (inputValue === "") {
+        swal.showInputError("You need to write something!");
+        return false
+      }
+      var userID = Utils.get_from_localstorage('user').id;
+      $.get("rest/v1/crateserver/" + inputValue + "/" + userID).done(function(data) {
+        console.log(data);
+        if (data != "greskica") {
+          swal("Auth: " + data, "Remeber to save your auth code!!!", "success");
+        } else {
+          swal("Error!", "Error in: " + data, "error");
+        }
+      }).fail(function(error) {
+        console.log(error);
+      });
     });
-  });
   }
 
   get_user_servers_list();
   get_user_servers_by_number();
 </script>
+
 </html>
