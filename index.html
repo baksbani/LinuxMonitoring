@@ -40,6 +40,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <link href="css/layout.min.css" rel="stylesheet" type="text/css" />
         <link href="css/themes/blue.min.css" rel="stylesheet" type="text/css" id="style_color" />
         <link href="css/custom.min.css" rel="stylesheet" type="text/css" />
+        <link href="bower_components/bootstrap-sweetalert/dist/sweetalert.css" rel="stylesheet" type="text/css"/>
         <!-- END THEME LAYOUT STYLES -->
         <link rel="shortcut icon" href="favicon.ico" /> </head>
     <!-- END HEAD -->
@@ -72,8 +73,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <i class="icon-user"></i> My Profile </a>
                                 </li>
                                 <li>
-                                    <a target="_blank" href="#">
-                                        <i class="icon-settings"></i> Add/Remove Machine </a>
+                                    <a href="javascript:void(0);" onclick="create_new_server();">
+                                        <i class="icon-settings"></i> Add New Machine </a>
                                 </li>
                                 <li>
                                     <a href="javascript:;Login.logout()">
@@ -258,6 +259,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <script src="js/utils.js" type="text/javascript"></script>
         <script src="js/login.js" type="text/javascript"></script>
+        <script src="bower_components/bootstrap-sweetalert/dist/sweetalert.min.js"></script>
     </body>
 
 <script type="text/javascript">
@@ -275,7 +277,7 @@ License: You must have a valid license purchased only from themeforest(the above
     $.get("rest/v1/server/"+userID).done(function(data) {
       console.log(data);
       $.each(data, function(index, item){
-        $('#all_servers').append('<tr><th scope="row">'+item.server_id+'</th>'+'<td>'+item.server_name+'</td>'+'<td>'+item.os_name+'</td>'+'<td>'+item.os_version+'</td>'+'<td>'+item.external_ip+'</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>');
+        $('#all_servers').append('<tr><th scope="row">'+item.server_id+'</th>'+'<td id="buttoncic">'+item.server_name+'</td>'+'<td>'+item.os_name+'</td>'+'<td>'+item.os_version+'</td>'+'<td>'+item.external_ip+'</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>');
       })
     }).fail(function(error) {
       console.log(error.responseJSON.error);
@@ -290,6 +292,33 @@ License: You must have a valid license purchased only from themeforest(the above
     }).fail(function(error) {
       console.log(error.responseJSON.error);
     });
+  }
+
+  function create_new_server(){
+  swal({
+  title: "Add New Machine:",
+  text: "Enter new server's name:",
+  type: "input",
+  showCancelButton: true,
+  closeOnConfirm: false,
+  inputPlaceholder: "Write name"
+  }, function (inputValue) {
+  if (inputValue === false) return false;
+  if (inputValue === "") {
+    swal.showInputError("You need to write something!");
+    return false
+  }
+  $.get("rest/v1/crateserver/"+inputValue).done(function(data) {
+    console.log(data);
+    if(data != "greskica"){
+      swal("Server Created!", "You wrote: " + data, "success");
+    }else {
+      swal("Error!", "Error in: " + data, "error");
+    }
+    }).fail(function(error) {
+      console.log(error);
+    });
+  });
   }
 
   get_user_servers_list();

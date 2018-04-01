@@ -20,6 +20,12 @@ Flight::route('GET /server/@id', function($id){
   Flight::json($data);
 });
 
+Flight::route('GET /crateserver/@servername', function($servername){
+  $data = uniqid();
+  //$data = "greskica";
+  echo $data;
+});
+
 // Function return number of active servers by that user
 Flight::route('GET /serverbynum/@id', function($id){
   $data = Flight::pm()->query("SELECT * FROM servers WHERE user_id = :id ",[':id' => $id]);
