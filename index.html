@@ -308,10 +308,11 @@ License: You must have a valid license purchased only from themeforest(the above
     swal.showInputError("You need to write something!");
     return false
   }
-  $.get("rest/v1/crateserver/"+inputValue).done(function(data) {
+  var userID = Utils.get_from_localstorage('user').id;
+  $.get("rest/v1/crateserver/"+inputValue+"/"+userID).done(function(data) {
     console.log(data);
     if(data != "greskica"){
-      swal("Server Created!", "You wrote: " + data, "success");
+      swal("Auth: " + data, "Remeber to save your auth code!!!", "success");
     }else {
       swal("Error!", "Error in: " + data, "error");
     }

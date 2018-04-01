@@ -20,10 +20,16 @@ Flight::route('GET /server/@id', function($id){
   Flight::json($data);
 });
 
-Flight::route('GET /crateserver/@servername', function($servername){
-  $data = uniqid();
-  //$data = "greskica";
-  echo $data;
+// Function that create new server and return auth to sweetalert
+Flight::route('GET /crateserver/@servername/@userid', function($servername, $userid){
+  $rand_auth = uniqid();
+  //$unos = Flight::pm()->add_new_server($rand_auth, $userid, $servername);
+  //if($unos){
+  //  $status = $rand_auth;
+  //}else{
+  //  $status = "greskica";
+  //}
+  echo $rand_auth;
 });
 
 // Function return number of active servers by that user

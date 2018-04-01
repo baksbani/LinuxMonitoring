@@ -92,6 +92,15 @@ class PersistenceManager{
       ':timesubmited' => $timesubmited
     ]);
   }
+
+  public function add_new_server($rand_auth, $userid, $servername){
+    return $this->query_single('INSERT INTO servers (auth_code, user_id, server_name) VALUES (:auth_code, :user_id, :server_name)', [
+      ':auth_code' => $rand_auth,
+      ':user_id' => $userid,
+      ':server_name' => $servername
+    ]);
+  }
+
 }
 
 ?>
