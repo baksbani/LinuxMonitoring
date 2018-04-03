@@ -77,6 +77,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <i class="icon-settings"></i> Add New Machine </a>
               </li>
               <li>
+                <a href="javascript:;getauthcode();">
+                                        <i class="icon-settings"></i> Get Auth Code </a>
+              </li>
+              <li>
                 <a href="javascript:;Login.logout()">
                                         <i class="icon-key"></i> Log Out </a>
               </li>
@@ -248,7 +252,7 @@ License: You must have a valid license purchased only from themeforest(the above
     $.get("rest/v1/server/" + userID).done(function(data) {
       console.log(data);
       $.each(data, function(index, item) {
-        $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="buttoncic">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
+        $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="'+item.auth_code+'" onClick="return_auth(this.id)">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
           '</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
         );
       })
@@ -293,6 +297,14 @@ License: You must have a valid license purchased only from themeforest(the above
         console.log(error);
       });
     });
+  }
+
+  function return_auth(clickeditem){
+    swal("Auth Code: " + clickeditem);
+  }
+
+  function getauthcode(){
+    swal("Click on server's name to get it's auth code.");
   }
 
   get_user_servers_list();
