@@ -253,7 +253,7 @@ License: You must have a valid license purchased only from themeforest(the above
       console.log(data);
       $.each(data, function(index, item) {
         $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="'+item.auth_code+'" onClick="return_auth(this.id)">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
-          '</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="#" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
+          '</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="stats.html?auth='+item.auth_code+'" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
         );
       })
     }).fail(function(error) {

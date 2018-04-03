@@ -281,6 +281,14 @@ License: You must have a valid license purchased only from themeforest(the above
       });
     });
   }
+
+  function get_data_for_opened_server(){
+    var current_url = window.location.href;
+    var url = new URL(current_url);
+    var x = url.searchParams.get("auth");
+    swal(x);
+  }
+  get_data_for_opened_server();
 </script>
 
 </html>
