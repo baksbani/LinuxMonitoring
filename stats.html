@@ -159,6 +159,45 @@ License: You must have a valid license purchased only from themeforest(the above
                         <div class="panel panel-primary">
                           <div class="panel-heading">OS Info</div>
                           <div class="panel-body">
+                            <table class="table" id="osinfo">
+                              <thead>
+                                <tr>
+                                  <th scope="col">OS Name</th>
+                                  <th scope="col">OS Version</th>
+                                  <th scope="col">Uptime</th>
+                                </tr>
+                              </thead>
+                            </table>
+
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-lg-6">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">RAM</div>
+                          <div class="panel-body">
+                            <table class="table" id="ram">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Total RAM</th>
+                                  <th scope="col">Used</th>
+                                  <th scope="col">Free</th>
+                                  <th scope="col">Shared</th>
+                                  <th scope="col">Available</th>
+                                  <th scope="col">Buffered</th>
+                                </tr>
+                              </thead>
+                            </table>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 col-lg-6">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">OS Info</div>
+                          <div class="panel-body">
                             <table class="table" id="all_servers">
                               <thead>
                                 <tr>
@@ -282,13 +321,22 @@ License: You must have a valid license purchased only from themeforest(the above
     });
   }
 
-  function get_data_for_opened_server(){
+  function get_data_for_opened_server() {
     var current_url = window.location.href;
     var url = new URL(current_url);
-    var x = url.searchParams.get("auth");
-    swal(x);
+    var auth = url.searchParams.get("auth");
+    $.get("rest/v1/getmonitordata/" + auth).done(function(data) {
+      console.log(data);
+      $.each(data, function(index, item) {
+        $('#osinfo').append('<tr><th scope="row">' + item.os_name + '</th>' + '<td>' + item.os_version + '</td>' + '<td>' + item.uptime + ' (HH:MM)</td></tr>');
+        $('#ram').append('<tr><th scope="row">' + item.ram_total + ' GB</th>' + '<td>' + item.ram_used + ' GB</td>' + '<td>' + item.ram_free + ' GB</td>' + '<td>' + item.ram_shared + ' GB</td>' + '<td>' + item.ram_available +
+          ' GB</td><td>'+ item.ram_buff +' GB</td></tr>');
+      });
+    }).fail(function(error) {
+      console.log(error.responseJSON.error);
+    });
   }
-  get_data_for_opened_server();
+get_data_for_opened_server();
 </script>
 
 </html>
