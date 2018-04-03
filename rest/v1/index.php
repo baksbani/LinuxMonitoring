@@ -3,7 +3,7 @@ use \Firebase\JWT\JWT;
 
 require_once '../../vendor/autoload.php';
 require_once '../PersistenceManager.class.php';
-require_once '../Config.class.php';
+require_once '../../../Config.class.php';
 
 Flight::register('pm', 'PersistenceManager', [Config::DB]);
 Flight::register('google', 'League\OAuth2\Client\Provider\Google', [Config::GOOGLE]);

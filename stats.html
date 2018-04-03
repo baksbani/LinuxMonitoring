@@ -150,7 +150,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="portlet-title tabbable-line">
                       <div class="caption caption-md">
                         <i class="icon-globe theme-font hide"></i>
-                        <span class="caption-subject font-blue-madison bold uppercase">Data for: <span style="color:#BD0C0C; font-size: 20px; " class="profile-name" > SERVER NAME </span> - Updated (15:30:20)</span>
+                        <span class="caption-subject font-blue-madison bold uppercase">Data for: <span style="color:#BD0C0C; font-size: 20px;" id="servername"></span><span> server. Last time updated: </span><span style="color:#BD0C0C; font-size: 20px;" id="timeupdated"></span>
                       </div>
                     </div>
 
@@ -325,9 +325,13 @@ License: You must have a valid license purchased only from themeforest(the above
     var current_url = window.location.href;
     var url = new URL(current_url);
     var auth = url.searchParams.get("auth");
+    var server_name = url.searchParams.get("servername");
+    $('#servername').append(server_name);
+
     $.get("rest/v1/getmonitordata/" + auth).done(function(data) {
       console.log(data);
       $.each(data, function(index, item) {
+        $('#timeupdated').append(item.timesubmited);
         $('#osinfo').append('<tr><th scope="row">' + item.os_name + '</th>' + '<td>' + item.os_version + '</td>' + '<td>' + item.uptime + ' (HH:MM)</td></tr>');
         $('#ram').append('<tr><th scope="row">' + item.ram_total + ' GB</th>' + '<td>' + item.ram_used + ' GB</td>' + '<td>' + item.ram_free + ' GB</td>' + '<td>' + item.ram_shared + ' GB</td>' + '<td>' + item.ram_available +
           ' GB</td><td>'+ item.ram_buff +' GB</td></tr>');
