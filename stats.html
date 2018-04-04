@@ -74,11 +74,7 @@ License: You must have a valid license purchased only from themeforest(the above
               </li>
               <li>
                 <a href="javascript:;create_new_server();">
-                                        <i class="icon-settings"></i> Add New Machine </a>
-              </li>
-              <li>
-                <a href="javascript:;Login.logout()">
-                                        <i class="icon-key"></i> Log Out </a>
+                                        <i class="icon-plus"></i> Add New Machine </a>
               </li>
             </ul>
           </li>
@@ -155,8 +151,29 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
 
                     <div class="row">
+                      <div class="col-sm-12 col-lg-12">
+                        <div class="panel panel-danger">
+                          <div class="panel-heading">CPU INFO</div>
+                          <div class="panel-body">
+                            <table class="table" id="cpu">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Model</th>
+                                  <th scope="col">Architecture</th>
+                                  <th scope="col">Cores</th>
+                                  <th scope="col">Threads</th>
+                                  <th scope="col">PIDs</th>
+                                  <th scope="col">Percentage</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
                       <div class="col-sm-12 col-lg-6">
-                        <div class="panel panel-primary">
+                        <div class="panel panel-success">
                           <div class="panel-heading">OS Info</div>
                           <div class="panel-body">
                             <table class="table" id="osinfo">
@@ -168,18 +185,35 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </tr>
                               </thead>
                             </table>
-
                           </div>
                         </div>
                       </div>
                       <div class="col-sm-12 col-lg-6">
+                        <div class="panel panel-success">
+                          <div class="panel-heading">Network</div>
+                          <div class="panel-body">
+                            <table class="table" id="network">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Hostname</th>
+                                  <th scope="col">Internal IP</th>
+                                  <th scope="col">Exteral IP</th>
+                                </tr>
+                              </thead>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12 col-lg-6">
                         <div class="panel panel-primary">
-                          <div class="panel-heading">RAM</div>
+                          <div class="panel-heading">RAM (GB)</div>
                           <div class="panel-body">
                             <table class="table" id="ram">
                               <thead>
                                 <tr>
-                                  <th scope="col">Total RAM</th>
+                                  <th scope="col">Total</th>
                                   <th scope="col">Used</th>
                                   <th scope="col">Free</th>
                                   <th scope="col">Shared</th>
@@ -188,49 +222,40 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </tr>
                               </thead>
                             </table>
-
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-lg-6">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">SWAP (GB)</div>
+                          <div class="panel-body">
+                            <table class="table" id="swap">
+                              <thead>
+                                <tr>
+                                  <th scope="col">Total</th>
+                                  <th scope="col">Used</th>
+                                  <th scope="col">Free</th>
+                                </tr>
+                              </thead>
+                            </table>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-sm-12 col-lg-6">
-                        <div class="panel panel-primary">
-                          <div class="panel-heading">OS Info</div>
+                        <div class="panel panel-warning">
+                          <div class="panel-heading">HDD (GB)</div>
                           <div class="panel-body">
-                            <table class="table" id="all_servers">
+                            <table class="table" id="hdd">
                               <thead>
                                 <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Server Name</th>
-                                  <th scope="col">OS</th>
-                                  <th scope="col">OS Version</th>
-                                  <th scope="col">IP</th>
-                                  <th scope="col">Action</th>
+                                  <th scope="col">Total</th>
+                                  <th scope="col">Used</th>
+                                  <th scope="col">Free</th>
                                 </tr>
                               </thead>
                             </table>
-
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-sm-12 col-lg-6">
-                        <div class="panel panel-primary">
-                          <div class="panel-heading">RAM</div>
-                          <div class="panel-body">
-                            <table class="table">
-                              <thead>
-                                <tr>
-                                  <th scope="col">#</th>
-                                  <th scope="col">Server Name</th>
-                                  <th scope="col">OS</th>
-                                  <th scope="col">OS Version</th>
-                                  <th scope="col">IP</th>
-                                  <th scope="col">Action</th>
-                                </tr>
-                              </thead>
-                            </table>
-
                           </div>
                         </div>
                       </div>
@@ -332,9 +357,14 @@ License: You must have a valid license purchased only from themeforest(the above
       console.log(data);
       $.each(data, function(index, item) {
         $('#timeupdated').append(item.timesubmited);
+        $('#cpu').append('<tr><th scope="row">' + item.cpu_model + '</th>' + '<td>' + item.cpu_architecture + '</td>' + '<td>' + item.cpu_cores + '</td>' + '<td>' + item.cpu_threads + '</td>' + '<td>' + item.pid_running +
+          '</td><td><span style="font-weight:bold; color:red;">'+ item.cpu_percentage +' %</span></td></tr>');
         $('#osinfo').append('<tr><th scope="row">' + item.os_name + '</th>' + '<td>' + item.os_version + '</td>' + '<td>' + item.uptime + ' (HH:MM)</td></tr>');
-        $('#ram').append('<tr><th scope="row">' + item.ram_total + ' GB</th>' + '<td>' + item.ram_used + ' GB</td>' + '<td>' + item.ram_free + ' GB</td>' + '<td>' + item.ram_shared + ' GB</td>' + '<td>' + item.ram_available +
-          ' GB</td><td>'+ item.ram_buff +' GB</td></tr>');
+        $('#network').append('<tr><th scope="row">' + item.hostname + '</th>' + '<td>' + item.internal_ip + '</td>' + '<td>' + item.external_ip + '</td></tr>');
+        $('#ram').append('<tr><th scope="row">' + item.ram_total + '</th>' + '<td>' + item.ram_used + '</td>' + '<td>' + item.ram_free + '</td>' + '<td>' + item.ram_shared + '</td>' + '<td>' + item.ram_available +
+          '</td><td>'+ item.ram_buff +'</td></tr>');
+        $('#swap').append('<tr><th scope="row">' + item.swap_total + '</th>' + '<td>' + item.swap_used + '</td>' + '<td>' + item.swap_free + '</td></tr>');
+        $('#hdd').append('<tr><th scope="row">' + item.total_hdd + '</th>' + '<td>' + item.used_hdd + '</td>' + '<td>' + item.available_hdd + '</td></tr>');
       });
     }).fail(function(error) {
       console.log(error.responseJSON.error);
