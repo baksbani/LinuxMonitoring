@@ -155,7 +155,17 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                     <div class="row">
                       <div class="col-sm-12 col-lg-12">
-                        <h1> forma... </h1>
+                        <form>
+                          <div class="form-group">
+                            <label for="exampleInputEmail1">Server Name</label>
+                            <input type="text" class="form-control" id="formInputServerName" placeholder="Enter new server name">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Server Auth Code</label>
+                            <input type="text" class="form-control" id="formInputServerAuth" readonly>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Submit Edit</button>
+                        </form>
                       </div>
                     </div>
                   </div>
@@ -251,10 +261,11 @@ License: You must have a valid license purchased only from themeforest(the above
     var server_name = url.searchParams.get("servername");
     $('#servername').append(server_name);
 
-    $.get("rest/v1/getmonitordata/" + auth).done(function(data) {
+    $.get("rest/v1/getdataforedit/" + auth).done(function(data) {
       console.log(data);
       $.each(data, function(index, item) {
-        $('#osinfo').append('<tr><th scope="row">' + item.os_name + '</th>' + '<td>' + item.os_version + '</td>' + '<td>' + item.uptime + ' (HH:MM)</td></tr>');
+        document.getElementById("formInputServerName").value = item.server_name;
+        document.getElementById("formInputServerAuth").value = item.auth_code;
       });
     }).fail(function(error) {
       console.log(error.responseJSON.error);

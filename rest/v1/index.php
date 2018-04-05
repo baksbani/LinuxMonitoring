@@ -26,6 +26,12 @@ Flight::route('GET /getmonitordata/@auth', function ($auth) {
     Flight::json($data);
 });
 
+//Function that return data for selected servers
+Flight::route('GET /getdataforedit/@auth', function ($auth) {
+    $data = Flight::pm()->query("SELECT * FROM servers WHERE auth_code = :auth", [':auth' => $auth]);
+    Flight::json($data);
+});
+
 // Function that create new server and return auth to sweetalert
 Flight::route('GET /crateserver/@servername/@userid', function ($servername, $userid) {
     $rand_auth = uniqid();
