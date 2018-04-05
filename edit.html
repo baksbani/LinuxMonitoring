@@ -150,15 +150,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="portlet-title tabbable-line">
                       <div class="caption caption-md">
                         <i class="icon-globe theme-font hide"></i>
-                        <span class="caption-subject font-blue-madison bold uppercase">Edit server:</span>
+                        <span class="caption-subject font-blue-madison bold uppercase">Edit server: </span><span style="color:#BD0C0C; font-size: 20px;" id="servername"></span>
                       </div>
                     </div>
-
-                    <div class="portlet-body">
-                      <div class="tab-content">
-                        <div id="accordion1" class="panel-group">
-                          <h2> Soon </h2>
-                        </div>
+                    <div class="row">
+                      <div class="col-sm-12 col-lg-12">
+                        <h1> forma... </h1>
                       </div>
                     </div>
                   </div>
@@ -219,30 +216,6 @@ License: You must have a valid license purchased only from themeforest(the above
     $('body').show();
   }
 
-  function get_user_servers_list() {
-    var userID = Utils.get_from_localstorage('user').id;
-    $.get("rest/v1/server/" + userID).done(function(data) {
-      console.log(data);
-      $.each(data, function(index, item) {
-        $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="'+item.auth_code+'" onClick="return_auth(this.id)">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
-          '</td><td><a href="#" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="stats.html?auth='+item.auth_code+'&servername='+item.server_name+'" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
-        );
-      })
-    }).fail(function(error) {
-      console.log(error.responseJSON.error);
-    });
-  }
-
-  function get_user_servers_by_number() {
-    var userID = Utils.get_from_localstorage('user').id;
-    $.get("rest/v1/serverbynum/" + userID).done(function(data) {
-      console.log(data);
-      $('#serversnumber').append(data);
-    }).fail(function(error) {
-      console.log(error.responseJSON.error);
-    });
-  }
-
   function create_new_server() {
     swal({
       title: "Add New Machine:",
@@ -271,16 +244,24 @@ License: You must have a valid license purchased only from themeforest(the above
     });
   }
 
-  function return_auth(clickeditem){
-    swal("Auth Code: " + clickeditem);
-  }
+  function get_data_for_opened_server() {
+    var current_url = window.location.href;
+    var url = new URL(current_url);
+    var auth = url.searchParams.get("auth");
+    var server_name = url.searchParams.get("servername");
+    $('#servername').append(server_name);
 
-  function getauthcode(){
-    swal("Click on server's name to get it's auth code.");
+    $.get("rest/v1/getmonitordata/" + auth).done(function(data) {
+      console.log(data);
+      $.each(data, function(index, item) {
+        $('#osinfo').append('<tr><th scope="row">' + item.os_name + '</th>' + '<td>' + item.os_version + '</td>' + '<td>' + item.uptime + ' (HH:MM)</td></tr>');
+      });
+    }).fail(function(error) {
+      console.log(error.responseJSON.error);
+    });
   }
+get_data_for_opened_server();
 
-  get_user_servers_list();
-  get_user_servers_by_number();
 </script>
 
 </html>
