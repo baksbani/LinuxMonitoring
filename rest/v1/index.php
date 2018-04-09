@@ -182,13 +182,13 @@ Flight::route('GET|POST /new_webhook_page', function () {
         $type = $input['message']['type']; //type of message received (text/picture)
         $text = $input['message']['text']; //actual message the user has sent
         $text_message = explode(' ', $text);
-        $command = $test[0];
-        $function = $test[1];
-        $param = $test[2];
+        $command = $text_message[0];
+        $function = $text_message[1];
+        $param = $text_message[2];
         $sender_id = $input['sender']['id']; //unique viber id of user who sent the message
         $sender_name = $input['sender']['name']; //name of the user who sent the message
 
-    if ($command == "#log" and $funct == "server") {
+    if ($command == "#log" and $function == "server") {
         $logdata = Flight::pm()->get_last_log($param);
         if ($logdata) {
             $cpu_percentage = $logdata['cpu_percentage'];
