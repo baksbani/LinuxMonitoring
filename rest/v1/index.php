@@ -188,18 +188,41 @@ else if($input['event'] == "message") {
   $sender_id = $input['sender']['id']; //unique viber id of user who sent the message
   $sender_name = $input['sender']['name']; //name of the user who sent the message
 
-  // here goes the data to send message back to the user
-  $data['auth_token'] = "47aae3f0eb27d575-ceccfc2bcc198821-18a39192cfe80625";
-  $data['receiver'] = $sender_id;
-  $data['text'] = "Server responded to you: ".$sender_name.".";
-  $data['type'] = 'text';
+  //debaging
+  $test = explode(' ',$text);
+  $command = $test[0];
+  $funct = $test[1];
+  $param = $test[2];
+  //$zapis = $command." ".$funct." ".$param;
+  //file_put_contents($file, $zapis, FILE_APPEND | LOCK_EX);
+  ///
+  if($command == "#log" and $funct == "server"){
+    $logdata = Flight::pm()->get_last_log($param);
+    if ($logdata) {
+          $cpu_percentage = $logdata['cpu_percentage'];
+          $ram_used = $logdata['ram_used'];
+          $swap_used = $logdata['swap_used'];
+          $used_hdd = $logdata['used_hdd'];
+          $timesubmited = $logdata['timesubmited'];
+          // here goes the data to send message back to the user
+          $data['auth_token'] = "47aae3f0eb27d575-ceccfc2bcc198821-18a39192cfe80625";
+          $data['receiver'] = $sender_id;
+          $data['text'] = "Last log: ".$timesubmited."\n--------------------\nCPU Usage: ".$cpu_percentage." %\nRAM Usage: ".$ram_used." GB\nSWAP Used: ".$swap_used." GB\nHDD Used: ".$used_hdd." GB";
+          $data['type'] = 'text';
 
-  //here goes the curl to send data to user
-  $ch = curl_init("https://chatapi.viber.com/pa/send_message");
-  curl_setopt($ch, CURLOPT_POST, 1);
-  curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-  $result = curl_exec($ch);
+          //here goes the curl to send data to user
+          $ch = curl_init("https://chatapi.viber.com/pa/send_message");
+          curl_setopt($ch, CURLOPT_POST, 1);
+          curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+          curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+          $result = curl_exec($ch);
+    } else {
+        Flight::halt(404, Flight::json(['error' => 'Error']));
+    }
+  }else{
+  ///
+}
+
 }
 
 });

@@ -101,6 +101,10 @@ class PersistenceManager{
     ]);
   }
 
+  public function get_last_log($param){
+    return $this->query_single('SELECT cpu_percentage, ram_used, swap_used, used_hdd, timesubmited FROM Monitoring WHERE auth_code = :auth_code ORDER BY id DESC LIMIT 1', [':auth_code' => $param]);
+  }
+
 }
 
 ?>
