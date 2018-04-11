@@ -150,37 +150,24 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="portlet-title tabbable-line">
                       <div class="caption caption-md">
                         <i class="icon-globe theme-font hide"></i>
-                        <span class="caption-subject font-blue-madison bold uppercase">Servers assigned to: <span style="color:#BD0C0C; font-size: 20px; " class="profile-name" > First name Last name </span></span>
+                        <span class="caption-subject font-blue-madison bold uppercase">Auth Codes</span>
                       </div>
                     </div>
 
-                    <div class="row list-separated profile-stat">
-                      <div class="col-md-12 ">
-                        <div class="uppercase profile-stat-title" id="serversnumber"></div>
-                        <div class="uppercase profile-stat-text">Servers</div>
-                      </div>
-                    </div>
-
-                    <div class="portlet-body">
-                      <div class="tab-content">
-                        <div id="accordion1" class="panel-group">
-                          <div class="panel panel-primary">
-                            <div class="panel-heading">All active servers</div>
-                            <div class="panel-body">
-                              <table class="table" id="all_servers">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Server Name</th>
-                                    <th scope="col">OS</th>
-                                    <th scope="col">OS Version</th>
-                                    <th scope="col">IP</th>
-                                    <th scope="col">Action</th>
-                                  </tr>
-                                </thead>
-                              </table>
-
-                            </div>
+                    <div class="row">
+                      <div class="col-sm-12 col-lg-12">
+                        <div class="panel panel-primary">
+                          <div class="panel-heading">Auth Codes</div>
+                          <div class="panel-body">
+                            <table class="table" id="authcodes">
+                              <thead>
+                                <tr>
+                                  <th scope="col">ID</th>
+                                  <th scope="col">Server Name</th>
+                                  <th scope="col">Auth Code</th>
+                                </tr>
+                              </thead>
+                            </table>
                           </div>
                         </div>
                       </div>
@@ -243,30 +230,6 @@ License: You must have a valid license purchased only from themeforest(the above
     $('body').show();
   }
 
-  function get_user_servers_list() {
-    var userID = Utils.get_from_localstorage('user').id;
-    $.get("rest/v1/server/" + userID).done(function(data) {
-      console.log(data);
-      $.each(data, function(index, item) {
-        $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="'+item.auth_code+'" onClick="return_auth(this.id)">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
-          '</td><td><a href="edit.html?auth='+item.auth_code+'&servername='+item.server_name+'" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="stats.html?auth='+item.auth_code+'&servername='+item.server_name+'" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="#" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
-        );
-      })
-    }).fail(function(error) {
-      console.log(error.responseJSON.error);
-    });
-  }
-
-  function get_user_servers_by_number() {
-    var userID = Utils.get_from_localstorage('user').id;
-    $.get("rest/v1/serverbynum/" + userID).done(function(data) {
-      console.log(data);
-      $('#serversnumber').append(data);
-    }).fail(function(error) {
-      console.log(error.responseJSON.error);
-    });
-  }
-
   function create_new_server() {
     swal({
       title: "Add New Machine:",
@@ -295,11 +258,19 @@ License: You must have a valid license purchased only from themeforest(the above
     });
   }
 
-  function return_auth(clickeditem){
-    swal("Auth Code: " + clickeditem);
-  }
-  get_user_servers_list();
-  get_user_servers_by_number();
+function get_auth_codes() {
+  var userID = Utils.get_from_localstorage('user').id;
+  $.get("rest/v1/getauthcodes/" + userID).done(function(data) {
+    console.log(data);
+    $.each(data, function(index, item) {
+      $('#authcodes').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td>' + item.server_name + '</td>' + '<td>' + item.auth_code + '</td></tr>'
+      );
+    })
+  }).fail(function(error) {
+    console.log(error.responseJSON.error);
+  });
+}
+get_auth_codes();
 </script>
 
 </html>

@@ -20,6 +20,12 @@ Flight::route('GET /server/@id', function ($id) {
     Flight::json($data);
 });
 
+// Function return all servers that belong to specific user
+Flight::route('GET /getauthcodes/@id', function ($id) {
+    $data = Flight::pm()->query("SELECT server_id, server_name, auth_code FROM servers WHERE user_id = :id ", [':id' => $id]);
+    Flight::json($data);
+});
+
 //Function that return data for selected servers
 Flight::route('GET /getmonitordata/@auth', function ($auth) {
     $data = Flight::pm()->query("SELECT * FROM Monitoring WHERE auth_code = :auth ORDER BY id DESC LIMIT 1", [':auth' => $auth]);
