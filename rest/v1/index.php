@@ -32,7 +32,7 @@ Flight::route('GET /getmonitordata/@auth', function ($auth) {
     Flight::json($data);
 });
 
-//Function that return data for selected servers
+//Function that return monitoring data for selected servers
 Flight::route('GET /getdataforedit/@auth', function ($auth) {
     $data = Flight::pm()->query("SELECT * FROM servers WHERE auth_code = :auth", [':auth' => $auth]);
     Flight::json($data);
@@ -95,7 +95,7 @@ Flight::route('POST /endpoint', function () {
     }
 });
 
-//Check if user exists
+//Check if user exists python script
 Flight::route('POST /checkemail', function () {
     $email = Flight::request()->data->email;
     $result = Flight::pm()->get_user_by_email($email);
@@ -106,7 +106,7 @@ Flight::route('POST /checkemail', function () {
     }
 });
 
-//Check if auth file is valid
+//Check if auth file is valid python script
 Flight::route('POST /checkauth', function () {
     $auth = Flight::request()->data->auth;
     $auth_result = Flight::pm()->get_valid_auth($auth);
@@ -167,7 +167,8 @@ Flight::route('GET /user/@email', function ($email) {
     }
 });
 
-Flight::route('GET|POST /new_webhook_page', function () {
+//Viber webhook (handling user request to viber public account)
+Flight::route('POST /new_webhook_page', function () {
     $request = file_get_contents("php://input");
     $file = "file.txt";
     file_put_contents($file, $request, FILE_APPEND | LOCK_EX);
@@ -235,7 +236,8 @@ Flight::route('GET|POST /new_webhook_page', function () {
     }
 });
 
-Flight::route('GET|POST /set_webhook', function () {
+//set viber webhook
+Flight::route('GET /set_webhook', function () {
     $url = 'https://chatapi.viber.com/pa/set_webhook';
     $jsonData='{ "auth_token": "47aae3f0eb27d575-ceccfc2bcc198821-18a39192cfe80625", "url": "https://monitor.biznet.ba/rest/v1/new_webhook_page" }';
     $ch = curl_init($url);
