@@ -51,6 +51,18 @@ Flight::route('GET /crateserver/@servername/@userid', function ($servername, $us
     Flight::json($status);
 });
 
+// Function that change server name
+Flight::route('GET /change_sever_name/@newservername/@authcode', function ($newservername, $authcode) {
+
+    $unos = Flight::pm()->change_server_name($newservername, $authcode);
+    if ($unos) {
+        $status = $newservername;
+    } else {
+        $status = "greskica";
+    }
+    Flight::json($status);
+});
+
 // Function return number of active servers by that user
 Flight::route('GET /serverbynum/@id', function ($id) {
     $data = Flight::pm()->query("SELECT * FROM servers WHERE user_id = :id ", [':id' => $id]);
@@ -129,6 +141,7 @@ Flight::route('POST /login', function () {
         Flight::halt(404, Flight::json(['error' => 'Email does not exist']));
     }
 });
+
 
 Flight::route('GET /redirect', function () {
     error_reporting(E_ALL);

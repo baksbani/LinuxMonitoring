@@ -165,6 +165,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <input type="text" class="form-control" id="formInputServerAuth" readonly>
                           </div>
                           <button type="submit" class="btn btn-primary">Submit Edit</button>
+                          <a href="javascript:;change_sever_name();">OVDJE</a>
                         </form>
                       </div>
                     </div>
@@ -272,6 +273,50 @@ License: You must have a valid license purchased only from themeforest(the above
     });
   }
 get_data_for_opened_server();
+
+function change_sever_name2() {
+  var current_url = window.location.href;
+  var url = new URL(current_url);
+  var auth = url.searchParams.get("auth");
+  var newservername = "STATICNO IME";
+
+  $.get("rest/v1/change_sever_name/" + newservername + "/" + auth).done(function(data) {
+    console.log(data);
+  }).fail(function(error) {
+    console.log(error.responseJSON.error);
+  });
+}
+
+function change_sever_name() {
+  var current_url = window.location.href;
+  var url = new URL(current_url);
+  var auth = url.searchParams.get("auth");
+  swal({
+    title: "Change Server Name:",
+    text: "Enter new server's name:",
+    type: "input",
+    showCancelButton: true,
+    closeOnConfirm: false,
+    inputPlaceholder: "Write new server name"
+  }, function(inputValue) {
+    if (inputValue === false) return false;
+    if (inputValue === "") {
+      swal.showInputError("You need to write something!");
+      return false
+    }
+
+    $.get("rest/v1/change_sever_name/" + newservername + "/" + auth).done(function(data) {
+      console.log(data);
+      if (data != "greskica") {
+        swal("Name is successfully changed", "success");
+      } else {
+        swal("Error!", "Error in: " + data, "error");
+      }
+    }).fail(function(error) {
+      console.log(error);
+    });
+  });
+}
 
 </script>
 

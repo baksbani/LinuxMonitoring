@@ -249,7 +249,7 @@ License: You must have a valid license purchased only from themeforest(the above
       console.log(data);
       $.each(data, function(index, item) {
         $('#all_servers').append('<tr><th scope="row">' + item.server_id + '</th>' + '<td id="'+item.auth_code+'" onClick="return_auth(this.id)">' + item.server_name + '</td>' + '<td>' + item.os_name + '</td>' + '<td>' + item.os_version + '</td>' + '<td>' + item.external_ip +
-          '</td><td><a href="edit.html?auth='+item.auth_code+'&servername='+item.server_name+'" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="stats.html?auth='+item.auth_code+'&servername='+item.server_name+'" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="javascript:;kao_remove();" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
+          '</td><td id="'+item.auth_code+'" onClick="change_sever_name(this.id)"><a href="javascript:;change_sever_name(this.id);" class="btn btn-primary"><span class="icon-wrench"></span> Edit</a><a href="stats.html?auth='+item.auth_code+'&servername='+item.server_name+'" class="btn btn-success"><span class="icon-graph"></span> Stats</a><a href="javascript:;kao_remove();" class="btn btn-danger"><span class="icon-trash"></span> Remove</a></td></tr>'
         );
       })
     }).fail(function(error) {
@@ -308,6 +308,39 @@ License: You must have a valid license purchased only from themeforest(the above
   function return_auth(clickeditem){
     swal("Auth Code: " + clickeditem);
   }
+
+  function change_sever_name(clickedauth) {
+    var current_url = window.location.href;
+    var url = new URL(current_url);
+    var auth = url.searchParams.get("auth");
+    swal({
+      title: "Change Server Name:",
+      text: "Enter new server's name:",
+      type: "input",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      inputPlaceholder: "Write new server name"
+    }, function(inputValue) {
+      if (inputValue === false) return false;
+      if (inputValue === "") {
+        swal.showInputError("You need to write something!");
+        return false
+      }
+
+      $.get("rest/v1/change_sever_name/" + inputValue + "/" + auth).done(function(data) {
+        console.log(data);
+        if (data != "greskica") {
+          swal("Name is successfully changed", "success");
+        } else {
+          swal("Error!", "Error in: " + data, "error");
+        }
+      }).fail(function(error) {
+        console.log(error);
+      });
+    });
+  }
+
+
   get_user_servers_list();
   get_user_servers_by_number();
 </script>

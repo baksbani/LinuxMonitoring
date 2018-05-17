@@ -101,6 +101,14 @@ class PersistenceManager{
     ]);
   }
 
+  public function change_server_name($newservername, $authcode){
+    return $this->execute('UPDATE servers SET server_name = :newservername WHERE auth_code = :authcode', [
+      ':newservername' => $newservername,
+      ':authcode' => $authcode
+    ]);
+  }
+
+
   public function get_last_log($param){
     return $this->query_single('SELECT cpu_percentage, ram_used, swap_used, used_hdd, timesubmited FROM Monitoring WHERE auth_code = :auth_code ORDER BY id DESC LIMIT 1', [':auth_code' => $param]);
   }
